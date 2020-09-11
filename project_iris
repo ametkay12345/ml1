@@ -1,35 +1,37 @@
 iris
 train = iris[,3:5]
-x = train[1:2]
-y = train[3]
-colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
-plot(iris[,3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species])
+#x = train[1:2]
+#y = train[3]
+#colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
+#plot(iris[,3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species])
 
 
 
 euclidian_dist <- function(u, v)
 {
-  (sqrt(sum((u - v)^2)))
+  return (sqrt(sum((u - v)^2)))
 }
 
 
 sort_data_by_dist <- function(data, u)
 {
-  l <- dim(data)[1]
-  n = dim(data)[2] - 1
+  row <- dim(data)[1]
+  col <- dim(data)[2] - 1
+  
   distances <- matrix(NA, 1, 2)
-  for(i in 1:l)
+  for(i in 1:row)
   {
-    distances[i, ] <- c(i, euclidian_dist(data[i, 1:n], u))
+    distances[i, ] <- c(i, euclidian_dist(data[i, 1:col], u))
   }
   ans <- data[order(distances[, 2]), ]
+  print(ans)
   return (ans)
 }
 
 
 nn <- function(u, data) 
 {
-  ordered_data <- sort_data_by_dist(data)
+  ordered_data <- sort_data_by_dist(data, u)
   row <- dim(dist)[1]
   col <- dim(dist)[2]
   ans <- dist[1, col]
@@ -38,6 +40,6 @@ nn <- function(u, data)
 }
 
 test1 <- c(2.3, 1.1)
-answer <- nn(test1, iris)
+answer <- nn(test1, train)
 print(answer)
 
