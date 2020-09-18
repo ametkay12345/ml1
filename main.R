@@ -38,8 +38,9 @@ nn <- function(data, u, k=1)
 
 loo <- function(data, k)
 {
-  return (0)
+  return (0) # wow
 }
+
 
 main <- function()
 {
