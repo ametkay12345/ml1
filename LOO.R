@@ -35,7 +35,6 @@ find_loo <- function(data)
       classes <- new_data[1:k, col]
       counts <- table(classes)
       answer <- names(which.max(counts))
-      
       if(data[i, 3] != answer)
         loo[k] = loo[k] + 1
     }
@@ -50,7 +49,7 @@ main <- function()
   colors <- c("setosa" = "red", "versicolor" = "green3", "virginica" = "blue")
   train <- iris[,3:5]
   loo <- find_loo(train)
-  plot(loo, type="l")
+  plot(loo, type="l", xlab="k", main="Plot of LOO(k)")
   print(which.min(loo))
 }
 

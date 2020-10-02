@@ -39,8 +39,9 @@ main <- function()
   train <- iris[,3:5]
   
   # drawing a plot of petal parameters
-  plot(train[1:2], pch = 21, bg = colors[iris$Species],
-      col = colors[iris$Species], asp = 1)
+  plot(train[1:2], pch=21, bg=colors[iris$Species],
+      col=colors[iris$Species], asp=1, xlab="Length", ylab="Width",
+      main="1nn on 10 tests")
   
   # generate 10 tests
   test <- cbind(runif(10, min=0.1, max=6.9),
@@ -52,11 +53,13 @@ main <- function()
     answer <- knn(train, c(test[i, 1], test[i, 2]), k)
     if(answer == -1)
     {
-      print('There are no neigbors')
+      print('There are no neighbours')
       break
     }
     points(test[i, 1], test[i, 2], pch = 22, bg = colors[answer], asp = 1)
   }
+  legend("bottomright", c("Training objects", "Classified objects"),
+         pch=c(21, 22), inset=0.01)
 }
 
 
